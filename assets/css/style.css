@@ -94,6 +94,10 @@ form .name-details .field:last-child {
   transform: translateY(-50%);
   cursor: pointer;
 }
+.form form .field span {
+  color: #333;
+  /* background-image: url(eye-off.svg); */
+}
 .form .link {
   text-align: center;
   margin: 10px 0;
@@ -164,17 +168,29 @@ form .name-details .field:last-child {
   font-size: 16px;
   border-radius: 5px 0 0 5px;
   outline: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.users .search input.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 .users .search button {
   width: 47px;
   height: 42px;
   border: none;
   outline: none;
-  color: #fff;
-  background: #333;
+  color: #333;
+  background: #fff;
   cursor: pointer;
   font-size: 17px;
   border-radius: 0 5px 5px 0;
+  transition: all 0.2s ease;
+}
+.users .search button.active {
+  color: #fff;
+  background: #333;
 }
 .users-list {
   max-height: 350px;
