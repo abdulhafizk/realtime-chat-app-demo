@@ -42,6 +42,7 @@ body {
   border-radius: 5px;
   margin-bottom: 10px;
   border: 1px solid #f5c6cb;
+  display: none;
 }
 .form form .name-details {
   display: flex;
@@ -191,6 +192,9 @@ form .name-details .field:last-child {
 .users .search button.active {
   color: #fff;
   background: #333;
+}
+.users .search button.active i::before {
+  background-image: url("close.svg");
 }
 .users-list {
   max-height: 350px;
