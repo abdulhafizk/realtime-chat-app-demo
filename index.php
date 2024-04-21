@@ -64,6 +64,7 @@
   </div>
 
   <script src="assets/js/pass-show-hide.js"></script>
+  <script src="assets/js/signup.js"></script>
 </body>
 
 </html>
