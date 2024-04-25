@@ -10,23 +10,23 @@ if (isset($_SESSION['unique_id'])) {
 <body>
   <div class="wrapper">
     <section class="form login">
-      <header>Realtime Chat App</header>
+      <header>Masyamrif Chat App</header>
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>
         <div class="field input">
           <label>Email Address</label>
-          <input type="text" name="email" placeholder="Enter your email" required>
+          <input type="text" name="email" placeholder="Masukkan alamat email" required>
         </div>
         <div class="field input">
           <label>Password</label>
-          <input type="password" name="password" placeholder="Enter your password" required>
+          <input type="password" name="password" placeholder="Masukkan password" required>
           <i class="fas fa-eye"></i>
         </div>
         <div class="field button">
           <input type="submit" name="submit" value="Continue to Chat">
         </div>
       </form>
-      <div class="link">Not yet signed up? <a href="index.php">Signup now</a></div>
+      <div class="link">Belum Mendaftar? <a href="index.php">Daftar Sekarang</a></div>
     </section>
   </div>
 
