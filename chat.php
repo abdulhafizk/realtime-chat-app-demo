@@ -1,114 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Realtime Chat App | Masyamrif</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <section class="chat-area">
-        <header>
-          <a href="#" class="back-icon"><ion-icon name="arrow-back-outline"></ion-icon></a>
-          <img src="assets/img/Me.png" alt="" />
-            <div class="details">
-              <span>Hafizh</span>
-              <p>Active Now</p>
-        </header>
-        <div class="chat-box">
-          <div class="chat outgoing">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At magni tempore repellat omnis sint id.</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <img src="assets/img/Me.png" alt="">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, excepturi?</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At magni tempore repellat omnis sint id.</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <img src="assets/img/Me.png" alt="">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, excepturi?</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At magni tempore repellat omnis sint id.</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <img src="assets/img/Me.png" alt="">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, excepturi?</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At magni tempore repellat omnis sint id.</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <img src="assets/img/Me.png" alt="">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, excepturi?</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At magni tempore repellat omnis sint id.</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <img src="assets/img/Me.png" alt="">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, excepturi?</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At magni tempore repellat omnis sint id.</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <img src="assets/img/Me.png" alt="">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, excepturi?</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At magni tempore repellat omnis sint id.</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <img src="assets/img/Me.png" alt="">
-            <div class="details">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, excepturi?</p>
-            </div>
-          </div>
+<?php
+session_start();
+include_once "php/config.php";
+if (!isset($_SESSION['unique_id'])) {
+  header("location: login.php");
+}
+?>
+<?php include_once "header.php"; ?>
+
+<body>
+  <div class="wrapper">
+    <section class="chat-area">
+      <header>
+        <?php
+        $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
+        $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+        if (mysqli_num_rows($sql) > 0) {
+          $row = mysqli_fetch_assoc($sql);
+        } else {
+          header("location: users.php");
+        }
+        ?>
+        <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+        <img src="php/images/<?php echo $row['img']; ?>" alt="">
+        <div class="details">
+          <span><?php echo $row['fname'] . " " . $row['lname'] ?></span>
+          <p><?php echo $row['status']; ?></p>
         </div>
-        <form action="#" class="typing-area">
-          <input type="text" placeholder="Type a message here...">
-          <button><i class="fab fa-telegram-plne"></i></button>
-        </form>
-      </section>
-    </div>
-  </body>
+      </header>
+      <div class="chat-box">
+
+      </div>
+      <form action="#" class="typing-area">
+        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+        <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+        <button><i class="fab fa-telegram-plane"></i></button>
+      </form>
+    </section>
+  </div>
+
+  <script src="js/chat.js"></script>
+
+</body>
+
 </html>

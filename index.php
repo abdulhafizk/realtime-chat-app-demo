@@ -1,70 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
+if (isset($_SESSION['unique_id'])) {
+  header("location: users.php");
+}
+?>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="content-type">
-  <meta charset="ISO-8859-1">
-  <title>Realtime Chat App | Masyamrif</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="https://cdns.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
-<script src="https://unpkg.com/feather-icons"></script>
-</head>
-<style>
-  .material-symbols-outlined {
-    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 14;
-  }
-</style>
+<?php include_once "header.php"; ?>
 
 <body>
   <div class="wrapper">
     <section class="form signup">
       <header>Realtime Chat App</header>
-      <form action="#">
-        <div class="error-txt">This is an error message!</div>
+      <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <div class="error-text"></div>
         <div class="name-details">
           <div class="field input">
             <label>First Name</label>
-            <input type="text" placeholder="First Name" />
+            <input type="text" name="fname" placeholder="First name" required>
           </div>
           <div class="field input">
             <label>Last Name</label>
-            <input type="text" placeholder="Last Name" />
+            <input type="text" name="lname" placeholder="Last name" required>
           </div>
         </div>
         <div class="field input">
           <label>Email Address</label>
-          <input type="text" placeholder="Enter your Email" />
+          <input type="text" name="email" placeholder="Enter your email" required>
         </div>
         <div class="field input">
           <label>Password</label>
-          <input type="password" placeholder="Enter new password" />
-          <span id="mata" class="material-symbols-outlined">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="feather feather-eye">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </span>
+          <input type="password" name="password" placeholder="Enter new password" required>
+          <i class="fas fa-eye"></i>
         </div>
         <div class="field image">
           <label>Select Image</label>
-          <input type="File" />
+          <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
         </div>
         <div class="field button">
-          <input type="Submit" value="Continue to Chat" />
+          <input type="submit" name="submit" value="Continue to Chat">
+        </div>
       </form>
-      <div class="link">Alredy Sign up? <a href="#">Login Now</a></div>
+      <div class="link">Already signed up? <a href="login.php">Login now</a></div>
     </section>
   </div>
 
-  <script src="assets/js/pass-show-hide.js"></script>
-  <script src="assets/js/signup.js"></script>
+  <script src="js/pass-show-hide.js"></script>
+  <script src="js/signup.js"></script>
+
 </body>
 
 </html>
